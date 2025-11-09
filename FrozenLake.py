@@ -1,5 +1,5 @@
 """ 
-Primer Intento, con MonteCarlo.
+Monte Carlo para Frozen Lake
 
 Autor: Antonio Garcia Font
 """
@@ -47,7 +47,7 @@ def render_policy(env, policy, delay=0.4):
 def main():
     env = gym.make("FrozenLake-v1", is_slippery=True, map_name="4x4")
     
-    gamma = 0.90
+    gamma = 0.9
     epsilon = 0.1
     episodes = 50000
     
@@ -71,8 +71,9 @@ def main():
                 if (state, action) not in returns:
                     returns[(state, action)] = []
                 
-                N[state, action] += 1
-                Q[state, action] += (G - Q[state, action]) / N[state, action]
+                returns[(state, action)].append(G)
+                
+                Q[state, action] = np.mean(returns[(state, action)])
         
         if ep % 2000 == 0:
             print(f"Episodio {ep} | Política parcial:")
