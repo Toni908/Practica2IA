@@ -42,14 +42,10 @@ def main():
     for ep in range(episodes):
         state, _ = env.reset()
         done = False
-        first = True    # <-- diferencia con Q-Learning
 
+        # Elegir acción epsilon-greedy
+        action = choose_action(Q, state, epsilon, env)  # <-- diferencia con Q-Learning
         while not done:
-            # Elegir acción
-            if first:   # <-- diferencia con Q-Learning
-                action = choose_action(Q, state, epsilon, env)  
-                first = False       # <-- diferencia con Q-Learning
-            
             # Ejecutar acción
             next_state, reward, terminated, truncated, info = env.step(action)
             done = terminated or truncated
@@ -61,7 +57,7 @@ def main():
             state = next_state
             action = next_action   # <-- diferencia con Q-Learning
         
-        if ep % 2000 == 0:
+        if ep % 10000 == 0:
             print(f"Episodio {ep} | Q parcial:")
             policy = np.argmax(Q, axis=1)
             print_policy_arrows(policy)

@@ -33,7 +33,7 @@ def main():
     
     gamma = 0.99
     alpha = 0.1
-    epsilon = 0.1
+    epsilon = 0.5
     episodes = 50000
     
     # Inicializar Q(s,a)
@@ -45,7 +45,7 @@ def main():
 
         while not done:
             # Elegir acción epsilon-greedy
-            action = choose_action(Q, state, epsilon, env)
+            action = choose_action(Q, state, epsilon, env)  # <-- diferencia con SARSA
             
             # Ejecutar acción
             next_state, reward, terminated, truncated, _ = env.step(action)
