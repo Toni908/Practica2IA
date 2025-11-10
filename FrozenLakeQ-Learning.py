@@ -75,7 +75,7 @@ def main():
 
 
 def print_policy_arrows(policy):    # funciona solo en grid quadrado
-    action_map = { 0: "↑", 1: "↓", 2: "←", 3: "→" }
+    action_map = { 0: "←", 1: "↓", 2: "→", 3: "↑" }
     nS = len(policy)
     side = int(np.sqrt(nS))
     grid = [action_map[a] for a in policy]

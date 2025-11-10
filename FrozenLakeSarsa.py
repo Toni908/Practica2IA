@@ -34,7 +34,7 @@ def main():
     gamma = 0.99
     alpha = 0.1
     epsilon = 0.1
-    episodes = 50000
+    episodes = 100000
     
     # Inicializar Q(s,a)
     Q = np.zeros((env.observation_space.n, env.action_space.n))
@@ -80,7 +80,7 @@ def main():
         time.sleep(1)
 
 def print_policy_arrows(policy):    # funciona solo en grid quadrado
-    action_map = { 0: "↑", 1: "↓", 2: "←", 3: "→" }
+    action_map = { 0: "←", 1: "↓", 2: "→", 3: "↑" }
     nS = len(policy)
     side = int(np.sqrt(nS))
     grid = [action_map[a] for a in policy]
